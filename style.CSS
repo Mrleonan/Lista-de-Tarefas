@@ -100,12 +100,12 @@ ion-icon {
   width: 30px;
   padding: 5px;
 }
-.add-btn {
+.done-btn {
   right: 40px;
   transition: 0.3s;
 }
 
-.add-btn:hover{
+.done-btn:hover{
   background-color: green;
   color: #fff;
 }

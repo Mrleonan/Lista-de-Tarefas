@@ -16,18 +16,20 @@ buttonValue.addEventListener('click', function(){
   spam.textContent = inputText.value
 
   const addbtn = document.createElement('ion-icon')
+  addbtn.addEventListener('click', function(){
+    console.log('oi')
+  })
   addbtn.setAttribute('name', 'checkmark-outline')
-  addbtn.classList = 'add-btn'
+  addbtn.classList = 'done-btn'
   const rmvbtn = document.createElement('ion-icon')
   rmvbtn.setAttribute('name', 'close-outline')
   rmvbtn.classList = 'remove-btn'
 
   taskLI.appendChild(addbtn)
   taskLI.appendChild(rmvbtn)
-
-
   taskLI.appendChild(spam)
   taskUL.appendChild(taskLI)
 })
+
 
 
