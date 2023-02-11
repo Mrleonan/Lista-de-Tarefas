@@ -5,31 +5,53 @@ const inputText = document.querySelector("#task-title")
 const buttonValue = document.querySelector("#add-btn")
 
 buttonValue.addEventListener('click', function(){
-  const taskUL = document.querySelector("#task-list")
 
-  // criando spam e icones LI
-  const taskLI = document.createElement('li')
-  taskLI.classList = "task-box"
+  let spams = document.querySelectorAll('.task-title')
 
-  const spam = document.createElement('spam')
-  spam.classList = 'task-title'
-  spam.textContent = inputText.value
+  let haveSpam = false;
 
-  const addbtn = document.createElement('ion-icon')
-  addbtn.addEventListener('click', function(){
-    console.log('oi')
-  })
-  addbtn.setAttribute('name', 'checkmark-outline')
-  addbtn.classList = 'done-btn'
-  const rmvbtn = document.createElement('ion-icon')
-  rmvbtn.setAttribute('name', 'close-outline')
-  rmvbtn.classList = 'remove-btn'
+  spams.forEach(e => {
+    if(e.innerText == inputText.value || inputText.value == 0){
+      haveSpam = true;
+    } 
+  });
+  
+  if(haveSpam){
+    window.alert('[ERRO] Valor inválido ou já existente')
+  } else {
+    const taskUL = document.querySelector("#task-list")
+  
+    const taskLI = document.createElement('li')
+    taskLI.classList = "task-box"
 
-  taskLI.appendChild(addbtn)
-  taskLI.appendChild(rmvbtn)
-  taskLI.appendChild(spam)
-  taskUL.appendChild(taskLI)
+    taskUL.appendChild(taskLI)
+    
+    const spam = document.createElement('spam')
+    spam.classList = 'task-title'
+    spam.textContent = inputText.value
+    
+    taskLI.appendChild(spam)
+
+    //botão Concluir tarefa
+    const donebtn = document.createElement('ion-icon')
+    donebtn.addEventListener('click', function(){
+      taskLI.classList = 'done'
+    })
+    donebtn.setAttribute('name', 'checkmark-outline')
+    donebtn.classList = 'done-btn'
+
+    taskLI.appendChild(donebtn)
+
+    //botão Excluir tarefa 
+    const rmvbtn = document.createElement('ion-icon')
+    rmvbtn.addEventListener('click', function(){
+      taskUL.removeChild(taskLI)
+    })
+    rmvbtn.setAttribute('name', 'close-outline')
+    rmvbtn.classList = 'remove-btn'
+
+    taskLI.appendChild(rmvbtn)
+  }
 })
-
 
 

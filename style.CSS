@@ -120,10 +120,6 @@ ion-icon {
   color: #fff;
 }
 
-.hide {
-  display: none;
-}
-
 #task-list li.done {
   background-color: #34073D;
   color: #fff;
