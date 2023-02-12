@@ -52,5 +52,3 @@ buttonValue.addEventListener('click', function(){
     taskLI.appendChild(rmvbtn)
   }
 })
-
-
