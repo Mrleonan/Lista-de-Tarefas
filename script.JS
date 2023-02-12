@@ -1,5 +1,3 @@
-//pegar o valor do input
-
 const inputText = document.querySelector("#task-title")
 
 const buttonValue = document.querySelector("#add-btn")
