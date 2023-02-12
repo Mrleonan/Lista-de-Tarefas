@@ -11,14 +11,15 @@ buttonValue.addEventListener('click', function(){
   let haveSpam = false;
 
   spams.forEach(e => {
-    if(e.innerText == inputText.value || inputText.value == 0){
+    if(e.innerText == inputText.value){
       haveSpam = true;
     } 
   });
   
-  if(haveSpam){
+  if(haveSpam || inputText.value == 0){
     window.alert('[ERRO] Valor inválido ou já existente')
   } else {
+    console.log(inputText.value)
     const taskUL = document.querySelector("#task-list")
   
     const taskLI = document.createElement('li')
