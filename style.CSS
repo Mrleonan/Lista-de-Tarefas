@@ -69,6 +69,13 @@ ion-icon {
 
 /* task container */
 
+#tasks-list-container h2 {
+  /* visibility: hidden; */
+}
+.hidden {
+  visibility: hidden;
+}
+
 #task-list {
   list-style: none;
   padding-left: 0;
@@ -124,3 +131,4 @@ ion-icon {
   color: #fff;
   text-decoration: line-through;
 }
+
