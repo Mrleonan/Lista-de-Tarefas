@@ -1,4 +1,4 @@
-<h1>Lista-de-Tarefa</h1>
+<h1>Lista-de-Tarefas</h1>
 
 > Status: Finalizado ✔️
 
