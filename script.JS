@@ -63,16 +63,11 @@ buttonValue.addEventListener('click', function(){
       for(let i = 0; i < taskLiAll.length; i++){
         if(!taskLiAll[i].className.includes('done')){
           todosFinalizados = false
-          console.log(todosFinalizados)
           break;
         };
       };
       
       if(todosFinalizados){
-        console.log('todos estão finalizados')
-      };
-      
-      if(todosFinalizados == true){
         //aplicando efeito na finalzação
         for(let i = 0; i < taskLiAll.length; i++){
           taskLiAll[i].classList = 'efeito-done'
