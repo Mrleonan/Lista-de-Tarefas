@@ -1,14 +1,15 @@
 const inputText = document.querySelector("#task-title")
 
-const buttonValue = document.querySelector("#add-btn")
-
 //mensagem resultado
 const msgh2 = document.querySelector('#tasks-list-container h2')
+
 msgh2.classList = 'hidden'
 
+const buttonValue = document.querySelector("#add-btn")
 
 buttonValue.addEventListener('click', function(){
 
+  //verificando se já existe um spam criado com o mesmo valor do input
   let spams = document.querySelectorAll('.task-title')
 
   let haveSpam = false;
@@ -23,11 +24,16 @@ buttonValue.addEventListener('click', function(){
   if(haveSpam || inputText.value == 0){
     alert('[ERRO] Valor inválido ou já existente')
   } else {
+    //aplicando mensagem mostrando as tarefas
+    msgh2.classList.remove('hidden')
+    msgh2.textContent = 'Estas são as suas tarefas:'
+
+    // UL -> LI -> SPAM & BUTON  (estrutura)
     const taskUL = document.querySelector("#task-list")
-  
+    
     const taskLI = document.createElement('li')
     taskLI.classList = "task-box"
-
+    
     taskUL.appendChild(taskLI)
     
     const spam = document.createElement('spam')
@@ -36,49 +42,71 @@ buttonValue.addEventListener('click', function(){
     
     taskLI.appendChild(spam)
 
-    msgh2.textContent = 'Estas são as suas tarefas:'
+    //resetando o valor do input
+    const input = document.querySelector('#task-title')
+    input.value = ''
 
-    //botão Concluir tarefa
+    //criando botão de concluir tarefa
     const donebtn = document.createElement('ion-icon')
-    donebtn.addEventListener('click', function(){
-      const taskLIALL = document.querySelectorAll('.task-box')
-      taskLI.classList = 'done'
-
-      let marcados = true;
-      for(let i = 0; i < taskLIALL.length; i++){
-        if(!taskLIALL[i].className.includes('done')){
-          marcados = false;
-          break;
-        }
-      }
-      if(marcados == true){
-        // taskLI.classList = 'done-effect'
-        console.log(taskLI.classList)
-      }
-
-  
-    })
     donebtn.setAttribute('name', 'checkmark-outline')
     donebtn.classList = 'done-btn'
 
+    //FUNÇÃO BOTÃO CONCLUIR
+    donebtn.addEventListener('click', function(){
+      //aplicando efeito de concluido
+      const taskLiAll = document.querySelectorAll('.task-box')
+      taskLI.classList.toggle('done')
+
+      //verificando se todas as terefas estão finalizadas
+      let todosFinalizados = true;
+
+      for(let i = 0; i < taskLiAll.length; i++){
+        if(!taskLiAll[i].className.includes('done')){
+          todosFinalizados = false
+          console.log(todosFinalizados)
+          break;
+        };
+      };
+      
+      if(todosFinalizados){
+        console.log('todos estão finalizados')
+      };
+      
+      if(todosFinalizados == true){
+        //aplicando efeito na finalzação
+        for(let i = 0; i < taskLiAll.length; i++){
+          taskLiAll[i].classList = 'efeito-done'
+        };
+
+        //removendo as tarefas e aplicando mensagem de finalização após 3 segundos
+        function removerElemento(){
+          setTimeout(function(){
+            for(let i = 0; i < taskLiAll.length; i++){
+              taskUL.removeChild(taskLiAll[i])
+            }
+            msgh2.textContent = 'PARABÉNS👏👏 Você finalizou TUDO!'
+          }, 3000);
+        }
+        removerElemento()
+      };
+    })
+    //adicionando botão DONE no elemento pai LI
     taskLI.appendChild(donebtn)
 
-    //botão Excluir tarefa 
+    //criando botão de remover tarefa
     const rmvbtn = document.createElement('ion-icon')
-    rmvbtn.addEventListener('click', function(){
-      taskUL.removeChild(taskLI)
-      spams = document.querySelectorAll('.task-title')
-        /*mensagem finalização*/
-        console.log(spams)
-      if(spams.length == 0){
-        msgh2.textContent = 'finalizou tudo'
-      }
-    })
     rmvbtn.setAttribute('name', 'close-outline')
     rmvbtn.classList = 'remove-btn'
+    
+    //FUNÇÃO BOTÃO REMOVER
+    rmvbtn.addEventListener('click', function(){
+      taskUL.removeChild(taskLI)
+      if(taskUL.childNodes.length == 3){
+        msgh2.classList = 'hidden'
+      }
+    })
 
+    //adicionando botão REMOVE no elemento pai LI
     taskLI.appendChild(rmvbtn)
-
-    msgh2.classList.remove('hidden')
-  }
+  };
 })

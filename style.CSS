@@ -131,4 +131,15 @@ ion-icon {
   color: #fff;
   text-decoration: line-through;
 }
+.efeito-done {
+  animation-name: slide;
+  animation-duration: 3s;
+}
 
+@keyframes slide {
+  from {
+  }
+  to {
+    font-size: 200%;
+  }
+}
